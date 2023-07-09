@@ -18,7 +18,7 @@ destination_choice_template = PromptTemplate(
                 Preferred user weather: {weather}
                 User budget: {budget}
                 Region: {region}
-                Example outputs: Crete. Enjoy the Mediterranean sun while relaxing on the beach 
+                Example output: Crete. Enjoy the Mediterranean sun while relaxing on the beach 
                 or exploring the many small villages and vibrant cities. With its affordable accommodation 
                 and beautiful scenery, it's the perfect getaway.
                 Output: '''
@@ -30,6 +30,17 @@ travel_plan_template = PromptTemplate(
         template='''Plan a holiday for the user. The user would like to travel to {destination} for {duration} days.
                 The user prefers {activity} during his holidays. Budgetwise the holiday should be {budget}. 
                 The user travels with {company}. The user wants to visit musea {musea} and go to restaurants {restaurants}.
+                Example output: 
+                San Diego is an ideal destination for a 7-day holiday with its miles of perfect beaches, pleasant climate and great attractions. 
+                Here is a suggested itinerary for a moderate budget holiday in San Diego with your partner:
+                Day 1: Arrive in San Diego and check into your hotel. Spend the rest of the day exploring the city - enjoy views from the top of Mount Soledad, go shopping at San Diego's unique boutiques, explore the Gaslamp District or just relax at the beach.
+                Day 2: Head out to Balboa Park and explore the San Diego Zoo. Spend the whole day here, observing wildlife and feeding the animals.
+                Day 3: Take a guided boat tour of San Diego's bay and harbor, and get up close and personal with some of the city's most famous landmarks and attractions.
+                Day 4: Head out to La Jolla Village and explore the stunning shores and unique boutiques. Spend the afternoon enjoying the sun, sand and surf at nearby La Jolla Cove.
+                Day 5: Head to Mission Beach, where you can rent bikes, rollerblade or take a romantic stroll along the beach. In the evening, head to the nearby restaurants and bars for some delicious local food and craft beers.
+                Day 6: spend the day exploring San Diego's cultural attractions. Visit the San Diego Art Museum, or take a tour at the USS Midway Museum.
+                Day 7: Spend your last day in San Diego soaking up some more local culture. Visit the museums and galleries of Old Town San Diego, or explore the historic Balboa Park.
+                Enjoy your holiday!   
                 Output: '''
 )
 travel_plan_chain = LLMChain(llm=llm, prompt=travel_plan_template, verbose=True)
@@ -61,7 +72,7 @@ def main():
         budget = st.selectbox("Select budget", ["Expensive", "Moderate", "Affordable", "Zero budget"])
         region = st.selectbox("Select region", ["Europe", "North America", "South America", "Africa", "Middle East", "Asia", "Oceania"])
 
-        if st.button("Find Destinations"):
+        if st.button("Find Destination"):
             response = destination_chain.run(activity=activity, weather=weather, budget=budget, region=region)
             st.write(response)
             destination = response.split(".")[0]

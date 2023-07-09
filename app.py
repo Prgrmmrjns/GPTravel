@@ -56,9 +56,9 @@ def main():
         st.session_state['destination'] = ""
     option = st.radio('Choose your option:', ("I already have a destination and I only want to plan my trip", "I want to find a travel destination and plan my trip"))
     if option == "I want to find a travel destination and plan my trip":
-        activity = st.selectbox("Select preferred activity", ["Relaxing", "Exploring", "Sightseeing"])
-        weather = st.selectbox("Select preferred weather", ["Tropical", "Temperate", "Mediterranean"])
-        budget = st.selectbox("Select budget", ["Expensive", "Moderate", "Affordable"])
+        activity = st.selectbox("Select preferred activity", ["Relaxing", "Exploring", "Sightseeing", "Sportive", "Educational"])
+        weather = st.selectbox("Select preferred weather", ["Tropical", "Mediterranean", "Temperate", "Cold"])
+        budget = st.selectbox("Select budget", ["Expensive", "Moderate", "Affordable", "Zero budget"])
         region = st.selectbox("Select region", ["Europe", "North America", "South America", "Africa", "Middle East", "Asia", "Oceania"])
 
         if st.button("Find Destinations"):
@@ -74,8 +74,8 @@ def main():
     
     else:
         destination = st.text_input("What is your destination?")
-        activity = st.selectbox("Select preferred activity", ["Relaxing", "Exploring", "Sightseeing"])
-        budget = st.selectbox("Select budget", ["Expensive", "Moderate", "Affordable"])
+        activity = st.selectbox("Select preferred activity", ["Relaxing", "Exploring", "Sightseeing", "Sportive", "Educational"])
+        budget = st.selectbox("Select budget", ["Expensive", "Moderate", "Affordable", "Zero budget"])
         if st.button("Save preferences"):
             st.session_state['destination'] = destination
             st.session_state['activity'] = activity
